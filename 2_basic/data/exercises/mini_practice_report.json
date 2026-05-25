@@ -1,0 +1,48 @@
+{
+  "csv_path": "/Users/guitherezsinaga/Documents/AI_ENGINEER/2_basic/data/exercises/sample.csv",
+  "summary": {
+    "average": 87.67,
+    "median": 93.5,
+    "top3": [
+      {
+        "name": "Alice",
+        "score": 100
+      },
+      {
+        "name": "Charlie",
+        "score": 96
+      },
+      {
+        "name": "Bob",
+        "score": 94
+      }
+    ],
+    "count": 6
+  },
+  "rows": [
+    {
+      "name": "Alice",
+      "score": 100
+    },
+    {
+      "name": "Bob",
+      "score": 94
+    },
+    {
+      "name": "Charlie",
+      "score": 96
+    },
+    {
+      "name": "Dika",
+      "score": 93
+    },
+    {
+      "name": "Eve",
+      "score": 65
+    },
+    {
+      "name": "Frank",
+      "score": 78
+    }
+  ]
+}

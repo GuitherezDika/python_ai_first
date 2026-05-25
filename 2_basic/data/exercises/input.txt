@@ -1,0 +1,4 @@
+Hello Dika!
+This is a sample text file.
+Line three has some words.
+line four is short.

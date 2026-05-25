@@ -1,0 +1,47 @@
+{
+  "text_summary": {
+    "path": "/Users/guitherezsinaga/Documents/AI_ENGINEER/2_basic/data/exercises/input.txt",
+    "lines": 4,
+    "words": 17,
+    "first_line": "Hello Dika!"
+  },
+  "csv_filtered": {
+    "rows": [
+      {
+        "name": "Alice",
+        "score": 91
+      },
+      {
+        "name": "Bob",
+        "score": 81
+      },
+      {
+        "name": "Charlie",
+        "score": 66
+      },
+      {
+        "name": "Dika",
+        "score": 95
+      },
+      {
+        "name": "Eve",
+        "score": 53
+      },
+      {
+        "name": "Frank",
+        "score": 68
+      }
+    ],
+    "average": 75.67
+  },
+  "json_loaded": {
+    "project": "file-handling",
+    "items": [
+      {
+        "id": 1,
+        "name": "sample"
+      }
+    ],
+    "last_updated": "now"
+  }
+}

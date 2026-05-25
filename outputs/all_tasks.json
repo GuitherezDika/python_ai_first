@@ -1,0 +1,51 @@
+[
+  {
+    "week": 1,
+    "day": 1,
+    "title": "Learn Python Basics",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 2,
+    "title": "Learn and practice Data Structures",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 3,
+    "title": "Learn and practice Functions",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 4,
+    "title": "Learn and practice File Handling",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 5,
+    "title": "Learn and practice Mini Practice",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 6,
+    "title": "Learn and practice Light Review",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 7,
+    "title": "Learn and practice Rest",
+    "est_hours": 2.0,
+    "done": true
+  }
+]

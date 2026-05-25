@@ -1,0 +1,787 @@
+{
+  "plan": [
+    {
+      "week": 1,
+      "day": 1,
+      "focus": "Python Basic",
+      "topics": "Syntax & Variables",
+      "task_detail": "Learn and practice Syntax & Variables",
+      "estimated_hours": 2,
+      "status": "DONE"
+    },
+    {
+      "week": 1,
+      "day": 2,
+      "focus": "Python Basic",
+      "topics": "Data Structures",
+      "task_detail": "Learn and practice Data Structures",
+      "estimated_hours": 2,
+      "status": "DONE"
+    },
+    {
+      "week": 1,
+      "day": 3,
+      "focus": "Python Basic",
+      "topics": "Functions",
+      "task_detail": "Learn and practice Functions",
+      "estimated_hours": 2,
+      "status": "DONE"
+    },
+    {
+      "week": 1,
+      "day": 4,
+      "focus": "Python Basic",
+      "topics": "File Handling",
+      "task_detail": "Learn and practice File Handling",
+      "estimated_hours": 2,
+      "status": "DONE"
+    },
+    {
+      "week": 1,
+      "day": 5,
+      "focus": "Python Basic",
+      "topics": "Mini Practice",
+      "task_detail": "Learn and practice Mini Practice",
+      "estimated_hours": 2,
+      "status": "DONE"
+    },
+    {
+      "week": 1,
+      "day": 6,
+      "focus": "Python Basic",
+      "topics": "Light Review",
+      "task_detail": "Learn and practice Light Review",
+      "estimated_hours": 1,
+      "status": "DONE"
+    },
+    {
+      "week": 1,
+      "day": 7,
+      "focus": "Python Basic",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": "DONE"
+    },
+    {
+      "week": 1,
+      "day": 8,
+      "focus": "Python Deep",
+      "topics": "OOP & Modules",
+      "task_detail": "Classes, modules, packages, import, pip, venv",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 1,
+      "day": 9,
+      "focus": "Python Deep",
+      "topics": "pandas Basics",
+      "task_detail": "Series/DataFrame, read_csv, basic transforms",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 1,
+      "day": 10,
+      "focus": "Python Deep",
+      "topics": "Testing & Tooling",
+      "task_detail": "pytest basics, logging, debugging, linting",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 2,
+      "day": 1,
+      "focus": "ML Concept",
+      "topics": "Intro ML",
+      "task_detail": "Learn and practice Intro ML",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 2,
+      "day": 2,
+      "focus": "ML Concept",
+      "topics": "Regression",
+      "task_detail": "Learn and practice Regression",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 2,
+      "day": 3,
+      "focus": "ML Concept",
+      "topics": "Classification",
+      "task_detail": "Learn and practice Classification",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 2,
+      "day": 4,
+      "focus": "ML Concept",
+      "topics": "Dataset Handling",
+      "task_detail": "Learn and practice Dataset Handling",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 2,
+      "day": 5,
+      "focus": "ML Concept",
+      "topics": "Mini Practice",
+      "task_detail": "Learn and practice Mini Practice",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 2,
+      "day": 6,
+      "focus": "ML Concept",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 2,
+      "day": 7,
+      "focus": "ML Concept",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 3,
+      "day": 1,
+      "focus": "ML Practice",
+      "topics": "Scikit-learn Setup",
+      "task_detail": "Learn and practice Scikit-learn Setup",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 3,
+      "day": 2,
+      "focus": "ML Practice",
+      "topics": "Regression Model",
+      "task_detail": "Learn and practice Regression Model",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 3,
+      "day": 3,
+      "focus": "ML Practice",
+      "topics": "Classification Model",
+      "task_detail": "Learn and practice Classification Model",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 3,
+      "day": 4,
+      "focus": "ML Practice",
+      "topics": "Evaluation",
+      "task_detail": "Learn and practice Evaluation",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 3,
+      "day": 5,
+      "focus": "ML Practice",
+      "topics": "Mini Project",
+      "task_detail": "Learn and practice Mini Project",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 3,
+      "day": 6,
+      "focus": "ML Practice",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 3,
+      "day": 7,
+      "focus": "ML Practice",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 4,
+      "day": 1,
+      "focus": "Deep Learning",
+      "topics": "Intro NN",
+      "task_detail": "Learn and practice Intro NN",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 4,
+      "day": 2,
+      "focus": "Deep Learning",
+      "topics": "Tensor Basic",
+      "task_detail": "Learn and practice Tensor Basic",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 4,
+      "day": 3,
+      "focus": "Deep Learning",
+      "topics": "Model Training",
+      "task_detail": "Learn and practice Model Training",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 4,
+      "day": 4,
+      "focus": "Deep Learning",
+      "topics": "Loss Function",
+      "task_detail": "Learn and practice Loss Function",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 4,
+      "day": 5,
+      "focus": "Deep Learning",
+      "topics": "Mini Practice",
+      "task_detail": "Learn and practice Mini Practice",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 4,
+      "day": 6,
+      "focus": "Deep Learning",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 4,
+      "day": 7,
+      "focus": "Deep Learning",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 5,
+      "day": 1,
+      "focus": "NLP Basic",
+      "topics": "Text Cleaning",
+      "task_detail": "Learn and practice Text Cleaning",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 5,
+      "day": 2,
+      "focus": "NLP Basic",
+      "topics": "Tokenization",
+      "task_detail": "Learn and practice Tokenization",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 5,
+      "day": 3,
+      "focus": "NLP Basic",
+      "topics": "Vectorization",
+      "task_detail": "Learn and practice Vectorization",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 5,
+      "day": 4,
+      "focus": "NLP Basic",
+      "topics": "Embedding",
+      "task_detail": "Learn and practice Embedding",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 5,
+      "day": 5,
+      "focus": "NLP Basic",
+      "topics": "Mini Practice",
+      "task_detail": "Learn and practice Mini Practice",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 5,
+      "day": 6,
+      "focus": "NLP Basic",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 5,
+      "day": 7,
+      "focus": "NLP Basic",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 6,
+      "day": 1,
+      "focus": "LLM Intro",
+      "topics": "Intro GPT",
+      "task_detail": "Learn and practice Intro GPT",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 6,
+      "day": 2,
+      "focus": "LLM Intro",
+      "topics": "Prompt Basic",
+      "task_detail": "Learn and practice Prompt Basic",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 6,
+      "day": 3,
+      "focus": "LLM Intro",
+      "topics": "Prompt Advanced",
+      "task_detail": "Learn and practice Prompt Advanced",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 6,
+      "day": 4,
+      "focus": "LLM Intro",
+      "topics": "Use Cases",
+      "task_detail": "Learn and practice Use Cases",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 6,
+      "day": 5,
+      "focus": "LLM Intro",
+      "topics": "Mini Practice",
+      "task_detail": "Learn and practice Mini Practice",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 6,
+      "day": 6,
+      "focus": "LLM Intro",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 6,
+      "day": 7,
+      "focus": "LLM Intro",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 7,
+      "day": 1,
+      "focus": "LLM API",
+      "topics": "API Setup",
+      "task_detail": "Learn and practice API Setup",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 7,
+      "day": 2,
+      "focus": "LLM API",
+      "topics": "Basic Call",
+      "task_detail": "Learn and practice Basic Call",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 7,
+      "day": 3,
+      "focus": "LLM API",
+      "topics": "Prompt Integration",
+      "task_detail": "Learn and practice Prompt Integration",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 7,
+      "day": 4,
+      "focus": "LLM API",
+      "topics": "Error Handling",
+      "task_detail": "Learn and practice Error Handling",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 7,
+      "day": 5,
+      "focus": "LLM API",
+      "topics": "Mini Project",
+      "task_detail": "Learn and practice Mini Project",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 7,
+      "day": 6,
+      "focus": "LLM API",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 7,
+      "day": 7,
+      "focus": "LLM API",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 8,
+      "day": 1,
+      "focus": "RAG Basic",
+      "topics": "RAG Concept",
+      "task_detail": "Learn and practice RAG Concept",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 8,
+      "day": 2,
+      "focus": "RAG Basic",
+      "topics": "Chunking",
+      "task_detail": "Learn and practice Chunking",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 8,
+      "day": 3,
+      "focus": "RAG Basic",
+      "topics": "Embedding Store",
+      "task_detail": "Learn and practice Embedding Store",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 8,
+      "day": 4,
+      "focus": "RAG Basic",
+      "topics": "Query Flow",
+      "task_detail": "Learn and practice Query Flow",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 8,
+      "day": 5,
+      "focus": "RAG Basic",
+      "topics": "Mini Practice",
+      "task_detail": "Learn and practice Mini Practice",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 8,
+      "day": 6,
+      "focus": "RAG Basic",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 8,
+      "day": 7,
+      "focus": "RAG Basic",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 9,
+      "day": 1,
+      "focus": "RAG Advanced",
+      "topics": "Vector DB",
+      "task_detail": "Learn and practice Vector DB",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 9,
+      "day": 2,
+      "focus": "RAG Advanced",
+      "topics": "Search Optimization",
+      "task_detail": "Learn and practice Search Optimization",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 9,
+      "day": 3,
+      "focus": "RAG Advanced",
+      "topics": "Context Handling",
+      "task_detail": "Learn and practice Context Handling",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 9,
+      "day": 4,
+      "focus": "RAG Advanced",
+      "topics": "Latency Basic",
+      "task_detail": "Learn and practice Latency Basic",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 9,
+      "day": 5,
+      "focus": "RAG Advanced",
+      "topics": "Mini Project",
+      "task_detail": "Learn and practice Mini Project",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 9,
+      "day": 6,
+      "focus": "RAG Advanced",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 9,
+      "day": 7,
+      "focus": "RAG Advanced",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 10,
+      "day": 1,
+      "focus": "Backend AI",
+      "topics": "FastAPI Intro",
+      "task_detail": "Learn and practice FastAPI Intro",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 10,
+      "day": 2,
+      "focus": "Backend AI",
+      "topics": "Create Endpoint",
+      "task_detail": "Learn and practice Create Endpoint",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 10,
+      "day": 3,
+      "focus": "Backend AI",
+      "topics": "Connect LLM",
+      "task_detail": "Learn and practice Connect LLM",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 10,
+      "day": 4,
+      "focus": "Backend AI",
+      "topics": "Testing API",
+      "task_detail": "Learn and practice Testing API",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 10,
+      "day": 5,
+      "focus": "Backend AI",
+      "topics": "Mini Project",
+      "task_detail": "Learn and practice Mini Project",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 10,
+      "day": 6,
+      "focus": "Backend AI",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 10,
+      "day": 7,
+      "focus": "Backend AI",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 11,
+      "day": 1,
+      "focus": "Integration",
+      "topics": "Connect to Mobile",
+      "task_detail": "Learn and practice Connect to Mobile",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 11,
+      "day": 2,
+      "focus": "Integration",
+      "topics": "UI Chatbot",
+      "task_detail": "Learn and practice UI Chatbot",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 11,
+      "day": 3,
+      "focus": "Integration",
+      "topics": "Handle Response",
+      "task_detail": "Learn and practice Handle Response",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 11,
+      "day": 4,
+      "focus": "Integration",
+      "topics": "Error Handling",
+      "task_detail": "Learn and practice Error Handling",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 11,
+      "day": 5,
+      "focus": "Integration",
+      "topics": "Mini Project",
+      "task_detail": "Learn and practice Mini Project",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 11,
+      "day": 6,
+      "focus": "Integration",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 11,
+      "day": 7,
+      "focus": "Integration",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 12,
+      "day": 1,
+      "focus": "Final Project",
+      "topics": "Planning",
+      "task_detail": "Learn and practice Planning",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 12,
+      "day": 2,
+      "focus": "Final Project",
+      "topics": "Development",
+      "task_detail": "Learn and practice Development",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 12,
+      "day": 3,
+      "focus": "Final Project",
+      "topics": "Testing",
+      "task_detail": "Learn and practice Testing",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 12,
+      "day": 4,
+      "focus": "Final Project",
+      "topics": "Improvement",
+      "task_detail": "Learn and practice Improvement",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 12,
+      "day": 5,
+      "focus": "Final Project",
+      "topics": "Deployment Prep",
+      "task_detail": "Learn and practice Deployment Prep",
+      "estimated_hours": 2,
+      "status": ""
+    },
+    {
+      "week": 12,
+      "day": 6,
+      "focus": "Final Project",
+      "topics": "Review",
+      "task_detail": "Learn and practice Review",
+      "estimated_hours": 1,
+      "status": ""
+    },
+    {
+      "week": 12,
+      "day": 7,
+      "focus": "Final Project",
+      "topics": "Rest",
+      "task_detail": "Learn and practice Rest",
+      "estimated_hours": 1,
+      "status": ""
+    }
+  ]
+}

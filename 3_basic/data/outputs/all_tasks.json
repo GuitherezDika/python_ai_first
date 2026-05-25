@@ -1,0 +1,23 @@
+[
+  {
+    "week": 1,
+    "day": 1,
+    "title": "Learn Python Basics",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 2,
+    "title": "Learn and practice Data Structures",
+    "est_hours": 2.0,
+    "done": true
+  },
+  {
+    "week": 1,
+    "day": 3,
+    "title": "Learn and practice Functions",
+    "est_hours": 2.0,
+    "done": true
+  }
+]
