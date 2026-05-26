@@ -32,4 +32,4 @@ def update_todo(todo_id: int, update_todo: TodoCreate):
             todo['title'] = update_todo.title
             todo['done'] = update_todo.done
             return todo
-        return None
+    return None

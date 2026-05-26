@@ -11,7 +11,7 @@ class TodoResponse(BaseModel):
 
 class TodoUpdateResponse(BaseModel):
     message: str
-    data: TodoResponse
+    todo: TodoResponse
 
 class ShortResponse(BaseModel):
     message: str

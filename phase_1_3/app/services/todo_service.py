@@ -1,6 +1,6 @@
 from app.repositories.todo_repository import (get_all_todos, get_todo_by_id, search_todo, create_todo, update_todo, delete_todo)
 from app.models.todo_model import (TodoCreate)
-
+import app.database.fake_db as db
 
 def get_todos_service():
     return get_all_todos()
@@ -12,8 +12,9 @@ def search_todo_service(keyword: str):
     return search_todo(keyword)
 
 def add_todo_service(title: str, done: bool):
+    db.todo_id_counter += 1
     todo_data = {
-        "id": len(get_all_todos()) + 1,
+        "id": db.todo_id_counter,
         "title": title,
         "done": done
     }

@@ -43,7 +43,7 @@ def update_todo(todo_id: int, todo: TodoCreate):
         raise HTTPException(status_code=404, detail="Todo not found")
     return {
         "message": "Todo updated successfully",
-        todo: updated,
+        "todo": updated,
     }
 
 @router.delete("/todos/{todo_id}", response_model=ShortResponse)
