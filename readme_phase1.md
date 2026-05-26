@@ -27,61 +27,6 @@ typing effect
 reconnect
 cancel stream
 ======================
-
-ROADMAP BELAJAR (RECOMMENDED)
-PHASE 1 — Python Async Foundation
-
-Durasi: 1 minggu
-
-Fokus
-async/await
-coroutine
-event loop
-asyncio
-
-Karena:
-FastAPI = async ecosystem.
-
-======
-PHASE 2 — FastAPI Basic
-
-Durasi: 1 minggu
-
-Belajar
-route
-GET/POST
-request body
-query param
-Pydantic model
-
-error handling
-HTTPException
-status code
-Swagger docs
-
-Project:
-
-Todo API
-
-=========
-PHASE 1_3 — FastAPI Architecture
-
-Durasi: 1–2 minggu
-
-Belajar
-router
-service layer
-repository pattern
-dependency injection
-middleware
-environment variable
-config management
-
-Project:
-
-Auth API
-
-======
 PHASE 1_4 — AI Gateway
 
 Durasi: 2 minggu
