@@ -24,4 +24,5 @@ def login_service(email: str, password: str):
     
     if user['password'] != password:
         return None
+    return user
         

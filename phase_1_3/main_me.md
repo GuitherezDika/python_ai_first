@@ -19,34 +19,25 @@ Production Backend
 =======
 fastapi_clean/
 
+phase_1_3/
+├── .env
 ├── app/
-│
-│   ├── main.py
-│
-│   ├── routers/
-│   │   ├── todo_router.py
-│   │   └── auth_router.py
-│
-│   ├── services/
-│   │   ├── todo_service.py
-│   │   └── auth_service.py
-│
-│   ├── repositories/
-│   │   ├── todo_repository.py
-│   │   └── auth_repository.py
-│
+│   ├── main.py           ← entry point
+│   ├── core/config.py    ← baca .env
+│   ├── middleware/logger.py
+│   ├── database/fake_db.py
 │   ├── models/
 │   │   ├── todo_model.py
 │   │   └── auth_model.py
-│
-│   ├── database/
-│   │   └── fake_db.py
-│
-│   ├── middleware/
-│   │   └── logger.py
-│
-│   └── core/
-│       └── config.py
-│
-├── requirements.txt
-└── .env
+│   ├── repositories/
+│   │   ├── todo_repository.py
+│   │   └── auth_repository.py
+│   ├── services/
+│   │   ├── todo_service.py
+│   │   └── auth_service.py
+│   └── routers/
+│       ├── todo_router.py
+│       └── auth_router.py
+└── venv/
+
+uvicorn app.main:app --reload
