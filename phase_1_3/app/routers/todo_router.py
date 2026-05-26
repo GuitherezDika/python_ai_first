@@ -18,7 +18,7 @@ router = APIRouter(
 def get_todos():
     return get_todos_service()
 
-@router.get("/todos/{todo_id}")
+@router.get("/{todo_id}")
 def get_todo(todo_id: int):
     todo = get_todo_service(todo_id)
     if not todo:
@@ -46,7 +46,7 @@ def update_todo(todo_id: int, todo: TodoCreate):
         "todo": updated,
     }
 
-@router.delete("/todos/{todo_id}", response_model=ShortResponse)
+@router.delete("/{todo_id}", response_model=ShortResponse)
 def delete_todo(todo_id: int):
     deleted = delete_todo_service(todo_id)
     if not deleted:
