@@ -4,6 +4,6 @@ class ChatRequest(BaseModel):
     message: str = Field(min_length=1)
 
 class ChatResponse(BaseModel):
-    messageL: str
+    message: str
     provider: str
     # provider bisa dinamis OpenAI, Gemini, Llama

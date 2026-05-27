@@ -58,14 +58,15 @@ Choose an important project: Default gemini project
 Create Key
 
 API Key details:
-API Key = AIzaSyAxG4MomUvKjYhEG_5cIkYWuea1G7C0aes <---->
-Name = fastapi-ai-gateway-dev
-Project Name = projects/485494866617
-Project Number = 485494866617
+API Key = AIzaSyBfR8G3U4n65dcrBVzZnXNcUQLCFCGfHSE <---->
+Name = papa ai key
+Project Name = projects/348089611044
+Project Number = 348089611044
 
 =====
 file baru .env
-GEMINI_API_KEY=AIzaSyAxG4MomUvKjYhEG_5cIkYWuea1G7C0aes
+GEMINI_API_KEY=AIzaSyBfR8G3U4n65dcrBVzZnXNcUQLCFCGfHSE
+APP_NAME=AI Gateway
 
 ===
 python3 -m venv venv
