@@ -64,6 +64,7 @@ Project Name = projects/348089611044
 Project Number = 348089611044
 
 =====
+login google = guitherez.dika@....
 file baru .env
 GEMINI_API_KEY=AIzaSyAXchDL1lLcQHdZ6ZNyEYcdHZ8mDHmow2s
 APP_NAME=AI Gateway
