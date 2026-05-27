@@ -65,10 +65,10 @@ Project Number = 348089611044
 
 =====
 login google = guitherez.dika@....
-file baru .env
-GEMINI_API_KEY=AIzaSyAXchDL1lLcQHdZ6ZNyEYcdHZ8mDHmow2s
+untuk env
+G_KEY=AIzaSyAXchDL1lLcQHdZ6ZNyEYcdHZ8mDHmow2s
 APP_NAME=AI Gateway
-OPENAI_API_KEY=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
+O_KEY=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
 ===
 python3 -m venv venv
 source venv/bin/activate
@@ -118,8 +118,6 @@ app/
 ====
 OPEN AI
 https://platform.openai.com/settings/organization/api-keys
-secret key = 
-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
 project access = papa ai key
 
 install open ai
