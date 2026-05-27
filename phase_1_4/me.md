@@ -125,3 +125,5 @@ install open ai
 pip install openai
 
 python3 -m uvicorn app.main:app --reload
+=====
+
