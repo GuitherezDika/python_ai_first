@@ -65,10 +65,7 @@ Project Number = 348089611044
 
 =====
 login google = guitherez.dika@....
-untuk env
-G_KEY=AIzaSyAXchDL1lLcQHdZ6ZNyEYcdHZ8mDHmow2s
-APP_NAME=AI Gateway
-O_KEY=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
+
 ===
 python3 -m venv venv
 source venv/bin/activate
