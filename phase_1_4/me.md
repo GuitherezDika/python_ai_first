@@ -58,7 +58,7 @@ Choose an important project: Default gemini project
 Create Key
 
 API Key details:
-API Key = AIzaSyBfR8G3U4n65dcrBVzZnXNcUQLCFCGfHSE <---->
+API Key = [REDACTED - simpan di .env]
 Name = papa ai key
 Project Name = projects/348089611044
 Project Number = 348089611044
@@ -70,6 +70,10 @@ login google = guitherez.dika@....
 python3 -m venv venv
 source venv/bin/activate
 pip install fastapi uvicorn python-dotenv google-generativeai
+
+GEMINI_API_KEY=AIzaSyAXchDL1lLcQHdZ6ZNyEYcdHZ8mDHmow2s
+APP_NAME=AI Gateway
+OPENAI_API_KEY=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
 
 mantab
 ===
