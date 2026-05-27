@@ -65,9 +65,9 @@ Project Number = 348089611044
 
 =====
 file baru .env
-GEMINI_API_KEY=AIzaSyBfR8G3U4n65dcrBVzZnXNcUQLCFCGfHSE
+GEMINI_API_KEY=AIzaSyAXchDL1lLcQHdZ6ZNyEYcdHZ8mDHmow2s
 APP_NAME=AI Gateway
-
+OPENAI_API_KEY=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
 ===
 python3 -m venv venv
 source venv/bin/activate
@@ -94,3 +94,34 @@ phase_1_4/
 
 cek limit quota request AI
 https://ai.dev/rate-limit 
+
+done
+
+ABSTRACTION 
+request -> chat_router -> provider_factory  -> gemini_service 
+                                            -> openai_service
+                                            -> llama_service
+satu router tapi bisa pilih provider dengan base class
+semua provider wajib punya method yang sama
+
+app/
+├── providers/
+│   ├── base.py          ← kontrak (abstract class)
+│   ├── gemini.py        ← implementasi Gemini
+│   └── openai.py        ← implementasi OpenAI (nanti)
+├── services/
+│   └── chat_service.py  ← pakai provider, tidak peduli siapa
+└── routers/
+    └── chat_router.py   ← terima request + pilih provider
+
+====
+OPEN AI
+https://platform.openai.com/settings/organization/api-keys
+secret key = 
+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
+project access = papa ai key
+
+install open ai
+pip install openai
+
+python3 -m uvicorn app.main:app --reload
