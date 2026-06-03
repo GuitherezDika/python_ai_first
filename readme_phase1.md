@@ -54,6 +54,7 @@ async generator
 Project:
 
 ChatGPT streaming clone
+ChatGPT Streaming Clone
 
 =====
 PHASE 1_6 — WebSocket
@@ -62,6 +63,7 @@ Durasi: 1 minggu
 
 Belajar
 websocket endpoint
+WebSocket endpoint
 real-time connection
 connection manager
 
@@ -69,6 +71,7 @@ Project:
 
 realtime AI chat
 
+Realtime AI Chat
 =====
 PHASE 1_7 — Flutter Streaming Client
 
