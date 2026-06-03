@@ -27,3 +27,28 @@ htmlcov/
 
 # Logs
 *.log
+
+# Flutter
+**/flutter/.dart_tool/
+**/flutter/.flutter-plugins
+**/flutter/.flutter-plugins-dependencies
+**/flutter/.packages
+**/flutter/build/
+phase_1_7/.dart_tool/
+phase_1_7/.flutter-plugins
+phase_1_7/.flutter-plugins-dependencies
+phase_1_7/build/
+phase_1_7/.packages
+phase_1_7/**/*.g.dart
+phase_1_7/**/generated_plugin_registrant.dart
+
+# iOS
+phase_1_7/ios/Pods/
+phase_1_7/ios/.symlinks/
+phase_1_7/ios/Flutter/Flutter.framework
+phase_1_7/ios/Flutter/Flutter.podspec
+
+# Android
+phase_1_7/android/.gradle/
+phase_1_7/android/local.properties
+phase_1_7/android/key.properties
