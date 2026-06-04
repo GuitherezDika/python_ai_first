@@ -1,43 +1,28 @@
-Ini phase yang sangat visionary.
+# Phase RAG — AI Memory Systems (On-Device)
 
-Karena mayoritas developer AI mobile saat ini:
+Lanjutan dari Phase Advanced (On-Device AI & Edge Computing).
 
-masih bergantung penuh ke cloud
-semua data dikirim ke server
-belum memahami local semantic memory
-belum memahami vector search on-device
+Phase ini fokus pada memberi AI kemampuan "ingatan" — menyimpan, mencari, dan menggunakan pengetahuan secara lokal di HP tanpa upload ke cloud.
 
-Padahal trend besar AI sekarang bergerak ke:
+---
 
-Private AI
-+
-Offline AI
-+
-Personal AI Memory
-+
-Edge AI
+## Kenapa Phase Ini Penting?
 
-Dan phase ini akan membuat kamu masuk ke area:
+Mayoritas AI app saat ini:
+- semua data dikirim ke server
+- tidak punya memory jangka panjang
+- tidak bisa cari berdasarkan makna (hanya keyword)
 
-AI Memory Systems Engineer (Mobile)
+Phase ini mengajarkan cara membangun AI yang:
+- menyimpan data lokal & terenkripsi
+- mencari berdasarkan makna semantik (bukan keyword)
+- punya "ingatan" personal tanpa bocor ke cloud
 
-yang masih sangat sedikit developernya.
+---
 
-=====
-AI Mobile App
-+
-Long-term Memory
-+
-Semantic Search
-+
-Offline Knowledge
-+
-Privacy-first Architecture
+## Target Akhir
 
-=====
-Portfolio Final
-Privacy-First AI Journal & Knowledge Base
-
+```
 User Notes
    ↓
 Encrypted Locally
@@ -49,392 +34,193 @@ Stored in Vector Database
 Semantic Search
    ↓
 AI Response with Context
+```
 
-====
-Kenapa ini powerful?
+Mirip Notion AI / Apple Intelligence memory — tapi local-first & privacy-first.
 
-Karena aplikasi:
+---
 
-tidak perlu upload data user
-tidak bocor ke cloud
-tetap punya "ingatan pintar"
-tetap bisa AI search
+## Portfolio Project #3
 
-Mirip:
+**Privacy-First AI Journal & Knowledge Base**
 
-Notion AI
-Obsidian AI
-Apple Intelligence memory
-Personal knowledge assistant
+Fitur:
+- Tulis catatan → otomatis di-embed dan disimpan lokal
+- Cari catatan dengan bahasa natural ("meeting kemarin")
+- AI menjawab pertanyaan berdasarkan catatan yang relevan
+- Semua data terenkripsi di device, tidak pernah ke server
 
-Tapi:
+---
 
-local-first & privacy-first.
+## Roadmap — 8–10 Minggu
 
-=====
-PHASE RAG-1
-Fundamental RAG & Embeddings
+### RAG-1 | Fundamental RAG & Embeddings (1 minggu)
 
-Durasi: 1 minggu
+Konsep dasar sebelum implementasi:
 
-Fokus
+**Apa itu Embedding?**
 
-Memahami:
+Teks diubah jadi vektor angka matematika:
+```
+"Saya suka Flutter" → [0.283, -0.114, 0.982, ...]
+```
 
-embeddings
-vector similarity
-semantic meaning
-retrieval system
-Materi
-Apa itu Embedding?
+Tujuannya agar AI bisa memahami makna, bukan hanya mencocokkan kata.
 
-Text:
+Contoh: "Mobil merah" dan "Kendaraan warna merah" → secara embedding, keduanya dekat secara matematika.
 
-"Saya suka Flutter"
+Konsep kunci: **Cosine Similarity** — semakin dekat dua vektor, semakin relevan kontennya.
 
-diubah menjadi:
+Output: Paham bagaimana AI memory dan semantic search bekerja.
 
-[0.283, -0.114, 0.982, ...]
+---
 
-Vektor angka matematika.
+### RAG-2 | Mini RAG Pipeline (1 minggu)
 
-==
-Tujuan embedding
+Implementasi flow RAG lengkap di Python:
 
-Agar AI bisa:
-
-memahami makna
-mencari kemiripan semantik
-Contoh
-"Mobil merah"
-
-dan
-
-"Kendaraan warna merah"
-
-secara embedding:
-
-dekat secara matematika.
-
-==
-Pelajari
-Cosine Similarity
-
-Konsep inti vector search.
-
-Semakin dekat:
-
-semakin relevan.
-Output Minggu Ini
-
-Paham:
-
-bagaimana AI memory bekerja
-bagaimana semantic search bekerja
-
-=======
-PHASE RAG-2
-Mini RAG Pipeline
-
-Durasi: 1 minggu
-
-Fokus
-
-Memahami flow lengkap RAG.
-
-Flow
+```
 Question
- ↓
+   ↓
 Embedding Query
- ↓
-Search Similar Notes
- ↓
+   ↓
+Search Similar Notes (top-k)
+   ↓
 Build Context
- ↓
+   ↓
 Send to LLM
- ↓
+   ↓
 Generate Answer
-Materi
-chunking text
-retrieval
-top-k search
-context injection
-Mini Practice
+```
 
-Python prototype:
+Materi: chunking text, retrieval, top-k search, context injection
 
-5 notes
-cari note paling relevan
-Output
+Mini Practice: 5 notes → cari note paling relevan berdasarkan pertanyaan.
 
-Mengerti:
+Output: Paham bagaimana ChatGPT "memory" bekerja di balik layar.
 
-bagaimana ChatGPT memory bekerja secara dasar
+---
 
-======
+### RAG-3 | Flutter Local Database (1 minggu)
 
-PHASE RAG-3
-Flutter Local Database Foundation
+Belajar database lokal Flutter yang cocok untuk AI:
 
-Durasi: 1 minggu
+Rekomendasi: **ObjectBox** — karena punya native vector search support.
 
-Fokus
+Alternatif: **Isar** — lebih ringan, Flutter-centric.
 
-Belajar database modern Flutter.
+Materi: CRUD (insert, update, delete note), local persistence architecture.
 
-Pilihan terbaik
-ObjectBox
+---
 
-atau
+### RAG-4 | Vector Database on Mobile (1–2 minggu)
 
-Isar
-Recommendation
-Untuk Vector Search:
+Menyimpan embeddings langsung di HP:
 
-Saya lebih menyarankan:
-
-ObjectBox Flutter
-
-Karena:
-
-native vector search support
-AI-oriented
-performa tinggi
-Alternatif
-Isar Database
-
-lebih ringan dan Flutter-centric.
-
-Belajar
-CRUD
-insert note
-update note
-delete note
-Output
-
-Paham:
-
-local persistence architecture
-
-=====
-PHASE RAG-4
-Vector Database on Mobile
-
-Durasi: 1–2 minggu
-
-Ini phase penting.
-
-Fokus
-
-Menyimpan embeddings di HP.
-
-Materi
-Schema
+Schema note:
+```
 Note
 - id
 - content
 - encryptedContent
-- embedding
+- embedding (vector)
 - createdAt
-Belajar
-vector indexing
-nearest neighbor search
-semantic retrieval
-Mini Project
+```
 
-Cari note:
+Materi: vector indexing, nearest neighbor search, semantic retrieval
 
-“meeting minggu lalu”
+Mini Project: Cari note "meeting minggu lalu" meski note aslinya "diskusi sprint project dengan tim" — dan berhasil ditemukan.
 
-meski note aslinya:
+---
 
-“diskusi sprint project dengan tim”
+### RAG-5 | Embedding Model On-Device (1–2 minggu)
 
-Output
+Generate embedding langsung di HP tanpa API:
 
-Sudah punya:
+Strategi:
+- **Option A (lebih mudah)**: pakai API embedding dari server (FastAPI dari Phase 1)
+- **Option B (lebih advanced)**: on-device embedding model
 
-semantic search mobile
+Rekomendasi: mulai hybrid (A), naik ke full offline (B) setelah paham.
 
-========
-PHASE RAG-5
-Embedding Model On-Device
+Model yang bisa dipakai: MiniLM, all-MiniLM-L6-v2, MobileBERT
 
-Durasi: 1–2 minggu
+---
 
-Ini phase advanced.
+### RAG-6 | Encryption & Privacy Layer (1 minggu)
 
-Fokus
+Enkripsi data user sebelum disimpan:
 
-Generate embedding langsung di HP.
-
-Pilihan teknologi
-Option A (lebih mudah)
-
-API embedding dari server.
-
-Option B (lebih advanced)
-
-on-device embedding model.
-
-Recommendation untuk kamu
-
-Mulai:
-
-hybrid dulu.
-
-Nanti naik:
-
-full offline embedding.
-Belajar
-Model
-MiniLM
-all-MiniLM-L6-v2
-MobileBERT
-Output
-
-Paham:
-
-embedding generation pipeline
-
-======
-
-PHASE RAG-5
-Embedding Model On-Device
-
-Durasi: 1–2 minggu
-
-Ini phase advanced.
-
-Fokus
-
-Generate embedding langsung di HP.
-
-Pilihan teknologi
-Option A (lebih mudah)
-
-API embedding dari server.
-
-Option B (lebih advanced)
-
-on-device embedding model.
-
-Recommendation untuk kamu
-
-Mulai:
-
-hybrid dulu.
-
-Nanti naik:
-
-full offline embedding.
-Belajar
-Model
-MiniLM
-all-MiniLM-L6-v2
-MobileBERT
-Output
-
-Paham:
-
-embedding generation pipeline
-
-======
-PHASE RAG-6
-Encryption & Privacy Layer
-
-Durasi: 1 minggu
-
-Ini phase yang membuat portfolio kamu sangat menarik.
-
-Fokus
-
-Privacy-first AI.
-
-Materi
-Encryption
-AES encryption
-secure storage
-key management
-Flow
+```
 User Note
- ↓
-Encrypt
- ↓
-Save Local
- ↓
-Generate Embedding
- ↓
-Store Vector
-Target
+   ↓ AES Encryption
+Save Local (encrypted)
+   ↓
+Generate Embedding (dari plaintext)
+   ↓
+Store Vector (tanpa plaintext)
+```
 
-Data user:
+Materi: AES encryption, secure storage, key management
 
-tidak plaintext
-aman di device
+Target: Data user tidak pernah plaintext di storage, aman meski HP hilang.
 
-====
+---
 
-PHASE RAG-7
-AI Context Injection
+### RAG-7 | AI Context Injection (1 minggu)
 
-Durasi: 1 minggu
+Menghubungkan vector search dengan AI response:
 
-Fokus
+```
+User bertanya: "Apa hasil meeting kemarin?"
+   ↓
+Retrieve notes relevan dari vector DB
+   ↓
+Build prompt: "[CONTEXT: notes relevan] + [QUESTION: user]"
+   ↓
+Send to AI (Gemini / local LLM)
+   ↓
+AI menjawab dengan konteks yang tepat
+```
 
-Mengirim retrieval result ke AI.
+Output: AI punya memory personal yang akurat dan relevan.
 
-Flow
-Question
- ↓
-Retrieve Similar Notes
- ↓
-Build Prompt Context
- ↓
-Send to AI
- ↓
-Response
-Contoh
+---
 
-User:
+### RAG-8 | Flutter Architecture Integration (1 minggu)
 
-"Apa hasil meeting kemarin?"
+Clean architecture untuk AI memory app:
 
-System:
+```
+presentation/
+domain/
+data/
+  vector_service/
+  embedding_service/
+  ai_service/
+  crypto_service/
+```
 
-cari note relevan
-inject ke prompt AI
-Output
+Integrasi dengan BLoC + Stream + Isolates dari Phase 1 & Phase 2.
 
-AI punya:
+Output: Codebase scalable, testable, siap production.
 
-memory personal
+---
 
-=====
+## Final Skill Stack
 
-PHASE RAG-8
-Flutter Architecture Integration
+Setelah phase ini selesai:
 
-Durasi: 1 minggu
+```
+Phase 1:  FastAPI + AI Gateway + Streaming + WebSocket + Flutter BLoC
+Phase 2:  TFLite + Computer Vision + Dart Isolates + Quantization
+Phase 3:  RAG + Embeddings + Vector DB + Encryption + AI Memory
+```
 
-Fokus
+Profile yang terbentuk: **AI Memory Systems Engineer (Mobile)**
 
-Clean architecture.
-
-Layer
-presentation
-domain
-data
-vector_service
-embedding_service
-ai_service
-crypto_service
-Integrasi
-BLoC
-Stream
-isolate
-Output
-
-Code scalable.
-
-=====
+Ini niche yang sangat sedikit developernya dan sangat dicari untuk:
+- Personal AI assistant
+- Enterprise knowledge management
+- Privacy-first AI product
+- Edge AI with long-term memory
