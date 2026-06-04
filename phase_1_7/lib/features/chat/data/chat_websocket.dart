@@ -1,7 +1,7 @@
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ChatWebsocket {
-  static const String _url = 'ws://127.0.0.1:8000/ws/chat';
+  static const String _url = 'ws://192.168.73.94:8000/ws/chat';
   WebSocketChannel? _channel;
 
   void connect() {
