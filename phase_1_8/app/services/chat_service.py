@@ -9,7 +9,7 @@ def get_provider(provider: str) -> BaseProvider:
     else:
         raise ValueError(f"Provider '{provider}' tidak di kenal")
 
-def chat(message: str, provider: str) -> tupple[str, bool]:
+def chat(message: str, provider: str) -> tuple[str, bool]:
     # cek cache dulu
     cached = get_cache(message)
     if cached:

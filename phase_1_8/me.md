@@ -27,3 +27,12 @@ coba di test 10x berturut2
   "message": "test rate limit",
   "provider": "gemini"
 }
+
+======
+jalankan docker
+docker compose up --build
+
+==
+redis-1  | Ready to accept connections  ✅
+api-1    | Application startup complete  ✅
+api-1    | Uvicorn running on http://0.0.0.0:8000  ✅
