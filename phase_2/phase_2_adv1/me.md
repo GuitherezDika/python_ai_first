@@ -1,5 +1,5 @@
 terminal;
-python3 -m venv venv
+python3 -m venv venv (kalau belum install)
 source venv/bin/activate
 pip install opencv-python jupyter numpy matplotlib
 
