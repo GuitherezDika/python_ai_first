@@ -2,6 +2,8 @@ terminal;
 python3 -m venv venv (kalau belum install)
 source venv/bin/activate
 pip install opencv-python jupyter numpy matplotlib
+optional:
+pip install opencv-python-headless --prefer-binary
 
 ADV 1
 belajar image di komputer
