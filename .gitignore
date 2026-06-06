@@ -18,6 +18,10 @@ __pycache__/
 # Environment variables
 .env
 
+.tflite
+.txt
+
+
 # Test / coverage
 .coverage
 htmlcov/
