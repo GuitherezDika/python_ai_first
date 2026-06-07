@@ -56,22 +56,3 @@ phase_1_7/ios/Flutter/Flutter.podspec
 phase_1_7/android/.gradle/
 phase_1_7/android/local.properties
 phase_1_7/android/key.properties
-
-phase_2/phase_2_adv3/.dart_tool/
-phase_2/phase_2_adv3/.flutter-plugins
-phase_2/phase_2_adv3/.flutter-plugins-dependencies
-phase_2/phase_2_adv3/build/
-phase_2/phase_2_adv3/.packages
-phase_2/phase_2_adv3/**/*.g.dart
-phase_2/phase_2_adv3/**/generated_plugin_registrant.dart
-
-# iOS
-phase_2/phase_2_adv3/ios/Pods/
-phase_2/phase_2_adv3/ios/.symlinks/
-phase_2/phase_2_adv3/ios/Flutter/Flutter.framework
-phase_2/phase_2_adv3/ios/Flutter/Flutter.podspec
-
-# Android
-phase_2/phase_2_adv3/android/.gradle/
-phase_2/phase_2_adv3/android/local.properties
-phase_2/phase_2_adv3/android/key.properties
