@@ -99,7 +99,15 @@ lib/
 ├── features/
 │   ├── fruit_detection/             <-- 🍏 Fitur 1: Deteksi Buah
 │   │   ├── data/
-│   │   ├── domain/
+        │   ├── datasources/
+        │   │   └── classifier_local_data_source.dart ✨
+        │   └── models/
+        │       └── detection_model.dart
+        ├── domain/
+        │   ├── entities/
+        │   │   └── detection_result.dart
+        │   └── usecases/
+        │       └── predict_image_usecase.dart ✨
 │   │   └── presentation/
 │   │       ├── bloc/                <-- Hanya berisi BLoC khusus deteksi buah
 │   │       │   ├── detection_bloc.dart

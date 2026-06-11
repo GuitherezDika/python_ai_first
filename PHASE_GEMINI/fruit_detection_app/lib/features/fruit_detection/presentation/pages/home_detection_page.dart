@@ -1,0 +1,200 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import '../bloc/detection_bloc.dart';
+import '../bloc/detection_event.dart';
+import '../bloc/detection_state.dart';
+
+class HomeDetectionPage extends StatefulWidget {
+  const HomeDetectionPage({super.key});
+
+  @override
+  State<HomeDetectionPage> createState() => _HomeDetectionPageState();
+}
+
+class _HomeDetectionPageState extends State<HomeDetectionPage> {
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage(ImageSource source) async {
+    final XFile? pickedFile = await _picker.pickImage(source: source);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+
+      // Baca bytes gambar dan kirim event ke BLoC
+      final bytes = await pickedFile.readAsBytes();
+      if (mounted) {
+        context.read<DetectionBloc>().add(PredictImageEvent(bytes));
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('YOLOv8 Fruit Detection'),
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+      ),
+      body: BlocBuilder<DetectionBloc, DetectionState>(
+        builder: (context, state) {
+          return Column(
+            children: [
+              const SizedBox(height: 20),
+              // Area Tampilan Gambar & Bounding Box
+              Expanded(
+                child: Center(
+                  child: _image == null
+                      ? const Text('Silakan pilih gambar buah terlebih dahulu')
+                      : Stack(
+                          children: [
+                            // 1. Gambar Utama (Dipaksa masuk ke bingkai ukuran model agar koordinat pas)
+                            Container(
+                              width: 300,
+                              height: 300,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: Image.file(_image!, fit: BoxFit.fill),
+                            ),
+                            // 2. Gambar Kotak Deteksi (Hanya muncul jika state Success)
+                            if (state is DetectionSuccess)
+                              ...state.results.map((result) {
+                                // YOLOv8 mendeteksi dalam skala 640x640.
+                                // Kita sesuaikan (skala ulang) ke ukuran kontainer UI kita yaitu 300x300.
+                                final double scaleX = 300 / 640;
+                                final double scaleY = 300 / 640;
+
+                                final left = result.boundingBox[0] * scaleX;
+                                final top = result.boundingBox[1] * scaleY;
+                                final width =
+                                    (result.boundingBox[2] -
+                                        result.boundingBox[0]) *
+                                    scaleX;
+                                final height =
+                                    (result.boundingBox[3] -
+                                        result.boundingBox[1]) *
+                                    scaleY;
+
+                                return Positioned(
+                                  left: left,
+                                  top: top,
+                                  width: width,
+                                  height: height,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.redAccent,
+                                        width: 3.0,
+                                      ),
+                                    ),
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Container(
+                                        color: Colors.redAccent,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 4,
+                                          vertical: 2,
+                                        ),
+                                        child: Text(
+                                          '${result.label} ${(result.confidence * 100).toStringAsFixed(0)}%',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                            // 3. Efek Loading saat Inferencing berjalan
+                            if (state is DetectionLoading)
+                              Positioned.fill(
+                                child: Container(
+                                  color: Colors.black45,
+                                  child: const Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                ),
+              ),
+              // Status Informasi di bawah Gambar
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: _buildStatusWidget(state),
+              ),
+              // Tombol Aksi Kamera & Galeri
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () => _pickImage(ImageSource.camera),
+                    icon: const Icon(Icons.camera_alt),
+                    label: const Text('Kamera'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () => _pickImage(ImageSource.gallery),
+                    icon: const Icon(Icons.photo_library),
+                    label: const Text('Galeri'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildStatusWidget(DetectionState state) {
+    if (state is DetectionSuccess) {
+      return Text(
+        'Terdeteksi: ${state.results.length} objek buah.',
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.green,
+        ),
+      );
+    } else if (state is DetectionError) {
+      return Text(
+        state.message,
+        style: const TextStyle(
+          fontSize: 14,
+          color: Colors.red,
+          fontWeight: FontWeight.bold,
+        ),
+        textAlign: TextAlign.center,
+      );
+    } else if (state is DetectionLoading) {
+      return const Text(
+        'YOLOv8 sedang menganalisis...',
+        style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+      );
+    }
+    return const Text(
+      'Menunggu input gambar...',
+      style: TextStyle(fontSize: 14, color: Colors.grey),
+    );
+  }
+}
