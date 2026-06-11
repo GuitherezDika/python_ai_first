@@ -1,0 +1,46 @@
+{
+    "task": "palm_oil_ffb_classification",
+    "version": "1.0",
+    "labels": [
+        {
+            "id": 0,
+            "name": "ripe",
+            "description": "Fresh Fruit Bunch that is fully ripe and ready for harvesting"
+        },
+        {
+            "id": 1,
+            "name": "unripe",
+            "description": "FFB that is still completely unripe (no visible ripeness)"
+        },
+        {
+            "id": 2,
+            "name": "underripe",
+            "description": "FFB partially developed but not ready for harvest"
+        },
+        {
+            "id": 3,
+            "name": "overripe",
+            "description": "FFB that is over mature and may start to deteriorate"
+        },
+        {
+            "id": 4,
+            "name": "empty_bunch",
+            "description": "Bunch with no fruit (empty spikelets)"
+        },
+        {
+            "id": 5,
+            "name": "damaged_diseased",
+            "description": "FFB showing physical damage or disease symptoms"
+        },
+        {
+            "id": 6,
+            "name": "abnormal",
+            "description": "Irregular or malformed bunch structure"
+        },
+        {
+            "id": 7,
+            "name": "dirty_long_stalk",
+            "description": "FFB with excessive dirt or unusually long stalk"
+        }
+    ]
+}

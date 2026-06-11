@@ -1,215 +1,246 @@
-# Phase Advanced — On-Device AI & Edge Computing
+# Phase Advanced — Edge AI Mobile Engineering
 
 Lanjutan dari Phase 1 (FastAPI + Flutter Streaming AI).
 
-Phase ini fokus pada menjalankan AI langsung di dalam HP pengguna — tanpa koneksi internet, tanpa server, tanpa biaya API.
+Phase ini fokus pada membangun AI yang berjalan langsung di device mobile secara realtime, offline, dan production-ready menggunakan modern edge AI runtime.
 
 ---
 
 ## Kenapa Phase Ini Penting?
 
-Mayoritas mobile developer hanya:
-- consume API AI dari cloud
-- pakai ChatGPT wrapper
-- tidak memahami on-device inference
+Mayoritas mobile developer:
 
-Padahal trend besar AI sekarang bergerak ke:
+* hanya consume AI API dari cloud
+* tidak memahami realtime inference
+* tidak memahami mobile AI optimization
+* bergantung pada package AI Flutter yang tidak stabil
 
-```
+Padahal industri AI modern bergerak ke:
+
+```text
 Private AI + Offline AI + Edge Computing
 ```
 
-Contoh nyata yang sudah production:
-- Apple Intelligence
-- Gemini Nano di Android
-- Samsung Galaxy AI
-- Offline OCR, realtime translation, face recognition
+Contoh production:
+
+* Apple Intelligence
+* Gemini Nano
+* Samsung Galaxy AI
+* Realtime mobile OCR
+* Industrial mobile AI inspection
 
 ---
 
 ## Target Akhir
 
-```
+```text
 Flutter App
    ↓
-On-device AI inference
+Native AI Runtime
    ↓
-Offline AI processing
+Realtime Inference
    ↓
-Fast performance (60–120 FPS)
+Offline Processing
    ↓
-No UI freeze
+No UI Freeze
+   ↓
+Production-ready Edge AI
 ```
 
 ---
 
-## Portfolio Project #2
+# Portfolio Project #2
 
-**Smart Vision AI Mobile App**
+## Palm Oil Field AI
 
-Pilihan use case (pilih salah satu):
-- PPE Safety Detector (deteksi helmet, vest, mask)
-- Palm Oil Fruit Detection (relevan industri perkebunan)
-- Offline Attendance Face Recognition
-- Document OCR Scanner
+Offline AI Mobile App untuk:
 
-Target market: industri, manufacturing, plantation, warehouse, enterprise.
+* deteksi kematangan tandan sawit
+* realtime grading
+* field inspection AI
 
----
+Output:
 
-## Roadmap — 10–14 Minggu
+* ripe
+* under-ripe
+* over-ripe
+* invalid / blur
 
-### ADV-1 | Dasar AI & Computer Vision (1 minggu)
-
-Memahami konsep dasar sebelum coding:
-
-- Image classification, object detection, segmentation, OCR, face recognition
-- Alur: Image → Preprocessing → AI Model → Inference → Prediction
-- Istilah: Tensor, RGB image, Bounding box, Confidence score, FPS, Inference time
-
-Tools: Python, OpenCV, Jupyter Notebook
-
-Output: Paham bagaimana AI vision bekerja dari input gambar sampai prediksi.
+Target:
+plantation industry, agritech, industrial inspection.
 
 ---
 
-### ADV-2 | TensorFlow Lite Foundation (1 minggu)
+# Roadmap — 10–14 Minggu
 
-Memahami TFLite sebagai engine AI untuk mobile:
-
-- Alur: Training Model → Export `.tflite` → Run di Mobile
-- Konsep: model.tflite, labels.txt, input tensor, output tensor
-
-Mini Practice: Run image classification sederhana dari file gambar.
-
----
-
-### ADV-3 | Flutter + TFLite Integration (1–2 minggu)
-
-Integrasi model AI ke Flutter app:
-
-Package yang dipakai:
-- `tflite_flutter`
-- `google_mlkit_flutter`
-
-Materi: load model, run inference, image input, parse output
-
-Mini Project: Offline image classifier (classify PPE / cat / dog)
-
-Output: AI bisa jalan offline di Flutter.
-
----
-
-### ADV-4 | Computer Vision Real-Time Camera (1–2 minggu)
-
-Jalankan AI dari input kamera secara realtime:
-
-Package: `camera`, `image stream`
+## ADV-1 | Computer Vision & AI Foundation
 
 Materi:
-- Camera frame processing
-- YUV/RGB conversion
-- Realtime inference
-- Frame throttling (agar tidak drop FPS)
 
-Tantangan: Kalau salah implementasi → UI freeze, FPS drop, memory leak.
+* image classification
+* object detection
+* segmentation
+* embedding
+* inference pipeline
 
-Mini Project: Realtime object detector dari kamera HP.
+Tools:
+
+* Python
+* OpenCV
+* Jupyter Notebook
+
+Output:
+Memahami alur AI vision dari input gambar hingga prediction.
 
 ---
 
-### ADV-5 | Dart Isolates — KRUSIAL (2 minggu)
+## ADV-2 | Edge AI Runtime Foundation
 
-**Phase paling penting** di seluruh roadmap ini.
+Belajar runtime modern untuk mobile AI:
 
-Kenapa? Karena AI inference berat. Kalau jalan di main thread:
-- UI patah-patah
-- ANR di Android
-- Freeze di iOS
+* ONNX Runtime Mobile
+* MediaPipe Tasks
+* LiteRT concept
+* Native AI inference
 
-Solusinya: pindahkan inference ke thread terpisah menggunakan Dart Isolates.
+Materi:
 
-```
-Main UI Thread
+* model loading
+* tensor input/output
+* preprocessing pipeline
+* inference lifecycle
+
+Output:
+Paham cara AI berjalan di mobile tanpa cloud.
+
+---
+
+## ADV-3 | Flutter + Native AI Integration
+
+Integrasi Flutter dengan native AI runtime.
+
+Architecture:
+
+```text
+Flutter UI
    ↓
-AI Isolate Thread → Run Inference → Return Result
+MethodChannel / FFI
    ↓
-UI update smooth
+Native Android AI Layer
+   ↓
+ONNX Runtime / MediaPipe
 ```
 
-Materi: `isolate`, `compute()`, `SendPort`, `ReceivePort`
+Materi:
 
-Target: UI tetap 60 FPS meski AI inference berjalan di background.
+* MethodChannel
+* native Kotlin bridge
+* image preprocessing
+* result parsing
+
+Output:
+Flutter dapat menjalankan AI inference secara stabil dan production-ready.
 
 ---
 
-### ADV-6 | Model Optimization & Quantization (1 minggu)
+## ADV-4 | Realtime Camera Processing
 
-Ini yang membedakan engineer biasa dengan senior:
+Materi:
 
-Quantization = memperkecil model tanpa banyak kehilangan akurasi:
+* realtime frame processing
+* camera image stream
+* YUV → RGB conversion
+* frame throttling
+* FPS optimization
 
-```
-Before: 250 MB, 2 sec inference
-After:   18 MB, 200 ms inference
-```
-
-Jenis quantization:
-- Dynamic quantization
-- Full integer quantization (int8)
-- Float16 quantization
-
-Output: Paham tradeoff antara ukuran model, kecepatan, dan akurasi.
+Mini Project:
+Realtime palm oil classification dari kamera HP.
 
 ---
 
-### ADV-7 | Architecture AI Mobile (1 minggu)
+## ADV-5 | Dart Isolates & Multithreading
 
-Membuat structure Flutter yang scalable untuk AI app:
+Materi:
 
-```
+* isolate
+* compute()
+* SendPort / ReceivePort
+* background processing
+
+Target:
+UI tetap smooth meski inference realtime berjalan.
+
+---
+
+## ADV-6 | Model Optimization
+
+Materi:
+
+* quantization
+* float16
+* int8 optimization
+* latency optimization
+* memory optimization
+
+Output:
+Model kecil, inference cepat, battery efficient.
+
+---
+
+## ADV-7 | AI Mobile Architecture
+
+Structure:
+
+```text
 presentation/
 domain/
 data/
-  ai_service/
-  camera_service/
-  isolate_service/
+native_ai/
+camera_service/
+stream_service/
+isolate_service/
 ```
 
-Integrasi dengan BLoC + Stream architecture dari Phase 1.
+Integrasi:
 
-Output: Codebase clean, testable, dan scalable.
+* BLoC
+* Stream architecture
+* realtime rendering
 
 ---
 
-### ADV-8 | Portfolio Project #2 (2–3 minggu)
+## ADV-8 | Final Portfolio Project
 
-Build final project dengan semua yang sudah dipelajari.
+Build:
+Palm Oil Field AI Production App
 
-Requirement wajib:
-- Offline AI inference (TFLite + quantized model)
-- Realtime camera processing
-- Dart Isolates (no UI freeze)
-- BLoC + Stream architecture
-- Smooth FPS (target 60+)
+Requirement:
+
+* offline AI inference
+* realtime camera AI
+* native AI runtime
+* isolate processing
+* smooth FPS
+* BLoC stream architecture
 
 ---
 
-## Final Skill Stack
+# Final Skill Stack
 
-Setelah phase ini selesai, skill kamu:
-
-```
+```text
 Flutter
-FastAPI (dari Phase 1)
-AI Gateway + Streaming (dari Phase 1)
-On-device AI (TFLite)
-Computer Vision (OpenCV)
+FastAPI
+Streaming Architecture
+ONNX Runtime Mobile
+MediaPipe
+Computer Vision
 Realtime Camera Processing
-Mobile Optimization
-Multithreading (Dart Isolates)
+Dart Isolates
+Edge AI Optimization
+Native Mobile AI Integration
 ```
 
-Profile yang terbentuk: **Senior AI Mobile Engineer**
-
-Market yang terbuka: AI startup, enterprise AI, industrial AI, smart factory, edge AI.
+Profile:
+Edge AI Mobile Engineer
+Realtime AI Engineer
+Industrial AI Mobile Engineer
