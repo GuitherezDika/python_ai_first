@@ -18,17 +18,46 @@ class _HomeDetectionPageState extends State<HomeDetectionPage> {
   final ImagePicker _picker = ImagePicker();
 
   Future<void> _pickImage(ImageSource source) async {
-    final XFile? pickedFile = await _picker.pickImage(source: source);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
+    try {
+      final XFile? pickedFile = await _picker.pickImage(
+        source: source,
+        maxWidth: 1024, // Membatasi resolusi agar tidak memakan RAM besar
+        maxHeight:
+            1024, // YOLO hanya butuh 640x640, jadi 1024 sudah sangat aman
+        imageQuality:
+            85, // Kompresi sedikit agar proses transfer byte via MethodChannel lebih ringan
+      );
 
-      // Baca bytes gambar dan kirim event ke BLoC
-      final bytes = await pickedFile.readAsBytes();
-      if (mounted) {
-        context.read<DetectionBloc>().add(PredictImageEvent(bytes));
+      if (pickedFile != null) {
+        final File file = File(pickedFile.path);
+
+        if (!await file.exists()) {
+          debugPrint("File gambar tidak ditemukan di path: ${pickedFile.path}");
+          return;
+        }
+
+        setState(() {
+          _image = file;
+        });
+
+        await Future.delayed(const Duration(milliseconds: 50));
+
+        final bytes = await file.readAsBytes();
+        print('++= $bytes');
+
+        if (bytes.isEmpty) {
+          debugPrint("Gagal membaca bytes: Array kosong.");
+          return;
+        }
+
+        if (mounted) {
+          print('++ MOUNTED ++');
+          context.read<DetectionBloc>().add(PredictImageEvent(bytes));
+        }
       }
+    } catch (e, st) {
+      debugPrint("Error saat memilih gambar: $e");
+      debugPrint("Stack trace: $st");
     }
   }
 
@@ -45,14 +74,13 @@ class _HomeDetectionPageState extends State<HomeDetectionPage> {
           return Column(
             children: [
               const SizedBox(height: 20),
-              // Area Tampilan Gambar & Bounding Box
+
               Expanded(
                 child: Center(
                   child: _image == null
                       ? const Text('Silakan pilih gambar buah terlebih dahulu')
                       : Stack(
                           children: [
-                            // 1. Gambar Utama (Dipaksa masuk ke bingkai ukuran model agar koordinat pas)
                             Container(
                               width: 300,
                               height: 300,
@@ -61,11 +89,8 @@ class _HomeDetectionPageState extends State<HomeDetectionPage> {
                               ),
                               child: Image.file(_image!, fit: BoxFit.fill),
                             ),
-                            // 2. Gambar Kotak Deteksi (Hanya muncul jika state Success)
                             if (state is DetectionSuccess)
                               ...state.results.map((result) {
-                                // YOLOv8 mendeteksi dalam skala 640x640.
-                                // Kita sesuaikan (skala ulang) ke ukuran kontainer UI kita yaitu 300x300.
                                 final double scaleX = 300 / 640;
                                 final double scaleY = 300 / 640;
 
@@ -113,7 +138,6 @@ class _HomeDetectionPageState extends State<HomeDetectionPage> {
                                   ),
                                 );
                               }),
-                            // 3. Efek Loading saat Inferencing berjalan
                             if (state is DetectionLoading)
                               Positioned.fill(
                                 child: Container(
@@ -129,12 +153,10 @@ class _HomeDetectionPageState extends State<HomeDetectionPage> {
                         ),
                 ),
               ),
-              // Status Informasi di bawah Gambar
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: _buildStatusWidget(state),
               ),
-              // Tombol Aksi Kamera & Galeri
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

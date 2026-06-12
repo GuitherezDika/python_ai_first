@@ -18,7 +18,7 @@ class MainActivity: FlutterActivity() {
     private var ortSession: OrtSession? = null
 
     // Sesuai dengan urutan data.yaml di Colab kamu (Contoh isi 5 kelas dummy)
-    private val labels = listOf( "Ripe", "Unripe", "Underripe", "Overripe", "Empty Bunch", "Damaged", "Abnormal", "Dirty/Long Stalk")
+    private val labels = listOf( "Orange", "Apple", "Ripe", "Unripe", "Underripe", "Overripe", "Empty Bunch", "Damaged", "Abnormal", "Dirty/Long Stalk")
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -48,83 +48,106 @@ class MainActivity: FlutterActivity() {
     private fun initOnnxRuntime() {
         try {
             if (ortSession == null) {
-                // Memastikan pembacaan aset aman dari crash
-                val inputStream = assets.open("dummy_fruits.onnx")
+                // 1. Pastikan nama file di sini sama persis dengan yang ada di folder assets!
+                // Jika namanya masih "dummy_fruits.onnx", sesuaikan string di bawah ini.
+                val inputStream = assets.open("dummy_fruits_opset19.onnx")
                 val modelBytes = inputStream.readBytes()
                 inputStream.close()
                 
                 ortSession = ortEnv.createSession(modelBytes)
+                android.util.Log.d("YOLOv8_ONNX", "BERHASIL! Model ONNX sukses dimuat ke Session.")
             }
         } catch (e: Exception) {
-            // Jika gagal load, cetak error ke log system Android agar tidak langsung crash buntu
-            android.util.Log.e("YOLOv8_ONNX", "Gagal inisialisasi model ONNX: ${e.message}")
+            // Perbaikan: Print stack trace lengkap biar kelihatan baris mana yang bikin gagal
+            android.util.Log.e("YOLOv8_ONNX", "Gagal total inisialisasi model ONNX!", e)
         }
     }
 
     private fun runInference(imageBytes: ByteArray): List<Map<String, Any>> {
-        // 1. Konversi byte array dari Flutter menjadi Bitmap Android
         val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+        if (bitmap == null) {
+            android.util.Log.e("YOLO_ANDROID", "Gagal melakukan decode gambar. Byte data rusak atau tidak valid.")
+            return emptyList()
+        }
         
-        // 2. PRE-PROCESSING: Resize gambar menjadi 640x640 sesuai requirement YOLOv8 kamu
         val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 640, 640, true)
         
-        // 3. Alokasikan buffer data Float untuk gambar (Format BCHW: 1 * 3 * 640 * 640)
+        // Perbaikan 1: Alokasikan FloatBuffer dan isi secara berurutan agar pointer bergerak maju
         val imgData = FloatBuffer.allocate(1 * 3 * 640 * 640)
-        imgData.rewind()
-
         val pixels = IntArray(640 * 640)
         resizedBitmap.getPixels(pixels, 0, 640, 0, 0, 640, 640)
 
-        // 4. Normalisasi pixel RGB dari 0-255 menjadi 0.0 - 1.0 (Standard YOLOv8)
-        // Pola planar: Semua R dulu, lalu semua G, lalu semua B
+        // Saluran R (Red)
         for (i in 0 until 640 * 640) {
             val pixel = pixels[i]
-            imgData.put(i, ((pixel shr 16 and 0xFF) / 255.0f)) // Red
-            imgData.put(640 * 640 + i, ((pixel shr 8 and 0xFF) / 255.0f)) // Green
-            imgData.put(2 * 640 * 640 + i, ((pixel and 0xFF) / 255.0f)) // Blue
+            imgData.put(((pixel shr 16) and 0xFF) / 255.0f)
         }
+        // Saluran G (Green)
+        for (i in 0 until 640 * 640) {
+            val pixel = pixels[i]
+            imgData.put(((pixel shr 8) and 0xFF) / 255.0f)
+        }
+        // Saluran B (Blue)
+        for (i in 0 until 640 * 640) {
+            val pixel = pixels[i]
+            imgData.put((pixel and 0xFF) / 255.0f)
+        }
+        
+        // Kembalikan posisi pointer buffer ke 0 sebelum dioper ke ONNX
+        imgData.rewind()
 
-        // 5. Buat Tensor Input ONNX
         val inputShape = longArrayOf(1, 3, 640, 640)
         val inputTensor = OnnxTensor.createTensor(ortEnv, imgData, inputShape)
         
-        // 6. Jalankan Evaluasi Model
         val inputName = ortSession?.inputNames?.iterator()?.next() ?: return emptyList()
         val output = ortSession?.run(Collections.singletonMap(inputName, inputTensor))
 
-        // 7. POST-PROCESSING: Parsing array output (1, 9, 8400)
         val outputTensor = output?.get(0) as? OnnxTensor ?: return emptyList()
-        val outputArray = outputTensor.value as Array<Array<FloatArray>> // [1][9][8400]
-        
-        val results = ArrayList<Map<String, Any>>()
-        val numElements = 8400 // Jumlah kandidat boks dari YOLOv8
-        val numClasses = labels.size
 
-        // Threshold untuk menyaring deteksi hantu/kurang yakin
+        val info = outputTensor.info
+        
+        val numElements = 8400 
+        val numClasses = labels.size
+        val totalRows = 4 + numClasses // Berjumlah 12 baris
+
+        val buffer = outputTensor.floatBuffer
+        val floatArrayOutput = FloatArray(buffer.remaining())
+        buffer.get(floatArrayOutput) 
+
+        val shape = info.shape // Ini akan mengembalikan array dimensi, misal [1, 14, 8400] atau [1, 8400, 14]
+        android.util.Log.d("YOLO_SHAPE", "Output Shape Model Anda: ${shape.joinToString(", ")}")
+        android.util.Log.d("YOLO_SHAPE", "Total size buffer: ${floatArrayOutput.size}")
+
+        val candidates = ArrayList<Map<String, Any>>()
         val confidenceThreshold = 0.40f 
 
+        // Perbaikan 2: Struktur data YOLOv8 berbentuk [1, 12, 8400]
+        // Setiap baris (kolom asli dari model) merepresentasikan 1 deteksi dari total 8400 kandidat
         for (i in 0 until numElements) {
-            // Cari skor kelas tertinggi untuk boks index ke-i
             var maxClassScore = 0.0f
             var classId = -1
 
             for (c in 0 until numClasses) {
-                // Elemen 0,1,2,3 adalah bounding box (x, y, w, h). Kelas dimulai dari index ke-4
-                val score = outputArray[0][4 + c][i]
+                // Rumus pemetaan flat-array ONNX yang benar untuk shape [1, dimensions, 8400]
+                val indexInFlatArray = ((4 + c) * numElements) + i
+                
+                if (indexInFlatArray >= floatArrayOutput.size) continue
+
+                val score = floatArrayOutput[indexInFlatArray]
                 if (score > maxClassScore) {
                     maxClassScore = score
                     classId = c
                 }
             }
 
-            // Jika skor di atas threshold, ambil boksnya
             if (maxClassScore > confidenceThreshold && classId != -1) {
-                val xCenter = outputArray[0][0][i]
-                val yCenter = outputArray[0][1][i]
-                val width = outputArray[0][2][i]
-                val height = outputArray[0][3][i]
+                // Mengambil nilai koordinat box dengan index array datar yang sudah diperbaiki
+                val xCenter = floatArrayOutput[(0 * numElements) + i]
+                val yCenter = floatArrayOutput[(1 * numElements) + i]
+                val width   = floatArrayOutput[(2 * numElements) + i]
+                val height  = floatArrayOutput[(3 * numElements) + i]
 
-                // Ubah format YOLO (Center X, Center Y, W, H) menjadi format pojok boks (Min X, Min Y, Max X, Max Y)
                 val xMin = xCenter - (width / 2)
                 val yMin = yCenter - (height / 2)
                 val xMax = xCenter + (width / 2)
@@ -133,14 +156,54 @@ class MainActivity: FlutterActivity() {
                 val prediction = HashMap<String, Any>()
                 prediction["label"] = labels[classId]
                 prediction["confidence"] = maxClassScore.toDouble()
+                // Menyimpan koordinat boks ke list
                 prediction["boundingBox"] = listOf(xMin.toDouble(), yMin.toDouble(), xMax.toDouble(), yMax.toDouble())
                 
-                results.add(prediction)
+                candidates.add(prediction)
             }
         }
 
-        // Catatan: Untuk simplifikasi dummy model, kita belum menambahkan algoritma NMS (Non-Maximum Suppression)
-        // Jadi jika ada boks menumpuk, itu wajar untuk tahap awal ini.
-        return results
+        // Terapkan Non-Maximum Suppression (NMS)
+        return applyNMS(candidates, iouThreshold = 0.45f)
+    }
+
+    // Fungsi tambahan NMS demi kestabilan UI Flutter
+    private fun applyNMS(boxes: List<Map<String, Any>>, iouThreshold: Float): List<Map<String, Any>> {
+        val sortedBoxes = boxes.sortedByDescending { it["confidence"] as Double }.toMutableList()
+        val selectedBoxes = ArrayList<Map<String, Any>>()
+
+        while (sortedBoxes.isNotEmpty()) {
+            val current = sortedBoxes.removeAt(0)
+            selectedBoxes.add(current)
+
+            val currentBox = current["boundingBox"] as List<Double>
+            val iterator = sortedBoxes.iterator()
+
+            while (iterator.hasNext()) {
+                val next = iterator.next()
+                val nextBox = next["boundingBox"] as List<Double>
+
+                // Hitung Intersection over Union (IoU)
+                val xMinInter = Math.max(currentBox[0], nextBox[0])
+                val yMinInter = Math.max(currentBox[1], nextBox[1])
+                val xMaxInter = Math.min(currentBox[2], nextBox[2])
+                val yMaxInter = Math.min(currentBox[3], nextBox[3])
+
+                val interWidth = Math.max(0.0, xMaxInter - xMinInter)
+                val interHeight = Math.max(0.0, yMaxInter - yMinInter)
+                val interArea = interWidth * interHeight
+
+                val currentArea = (currentBox[2] - currentBox[0]) * (currentBox[3] - currentBox[1])
+                val nextArea = (nextBox[2] - nextBox[0]) * (nextBox[3] - nextBox[1])
+                val unionArea = currentArea + nextArea - interArea
+
+                val iou = if (unionArea > 0) interArea / unionArea else 0.0
+
+                if (iou > iouThreshold) {
+                    iterator.remove() // Hapus boks yang terlalu menumpuk
+                }
+            }
+        }
+        return selectedBoxes
     }
 }

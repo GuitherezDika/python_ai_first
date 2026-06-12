@@ -74,7 +74,7 @@ web Yolo kembali ke project
 klik code
 
 success_model = YOLO('/content/runs/detect/train/weights/best.pt')
-success_model.export(format='onnx', imgsz=640, simplify=True)
+success_model.export(format='onnx', imgsz=640, simplify=True, opset=19) // tambahan dari flutter harus opset 19
 Run
 Suksess
 -> best.onnx tercreate
@@ -83,13 +83,13 @@ Suksess
 ukuran = 11.7mb
 download dari web
 
-letakin dalam folder project - rename = dummy_fruits.onnx
+letakin dalam folder project - rename = dummy_fruits_opset19.onnx
 ============
 Tahap 5 = FLUTTER
 
 flutter create fruit_detection_app
 tambahkan direktori
-    assets/models/dummy_fruits.onnx
+    assets/models/dummy_fruits_opset19.onnx
 daftarkan asset di pubspec.yaml
 flutter pub get
 
@@ -134,4 +134,43 @@ lib/
 
 ==============
 
+issue flutter terkait dataset roboflow yang cocok dengan bridge native code saat ini yaiut Opset 19;
+ web: https://colab.research.google.com/drive/1tSfeD6YHvnryv157oTy-yWXS0CbK69Kf#scrollTo=ZtuF5Oi35j9x
+
+ run berurutan:
+ code 1 = !pip install ultralytics roboflow
+
+ code 2
+ from roboflow import Roboflow
+
+rf = Roboflow(api_key="42OUONhF0n4aZzSTe2fB")
+project = rf.workspace("class-ntrex").project("fruits-detection-gh4it")
+version = project.version(1)
+dataset = version.download("yolov8")
+
+code 3
+from ultralytics import YOLO
+
+model = YOLO('yolov8n.pt')
+
+results = model.train(
+    data=f"{dataset.location}/data.yaml",
+    epochs=15,
+    imgsz=640,
+    device='cuda'
+)
+
+code 4
+success_model = YOLO('/content/runs/detect/train/weights/best.pt')
+success_model.export(format='onnx', imgsz=640, simplify=True, opset=19)
+
+dummy_fruits_opset19.onnx
+download dan letakkan pada
+1. android/app/src/main/assets/
+2. assets/models/
+3. pubspec.yaml 
+    flutter:
+        uses-material-design: true
+        assets:
+            - assets/models/dummy_fruits_opset19.onnx
 =====

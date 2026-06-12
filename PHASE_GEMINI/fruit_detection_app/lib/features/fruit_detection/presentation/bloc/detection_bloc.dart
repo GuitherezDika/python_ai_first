@@ -17,9 +17,14 @@ class DetectionBloc extends Bloc<DetectionEvent, DetectionState> {
     emit(DetectionLoading());
     try {
       final results = await _predictImageUseCase.execute(event.imageBytes);
+      print('1 --- Detection results: $results'); // []
       if (results.isEmpty) {
+        print('2 --- Detection results: $results');
+
         emit(DetectionSuccess(const []));
       } else {
+        print('3 --- Detection results: $results');
+
         emit(DetectionSuccess(results));
       }
     } catch (e) {

@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final dataSource = ClassifierLocalDataSource();
     final predictImageUseCase = PredictImageUseCase(dataSource);
+    print(
+      'MAIN --- PredictImageUseCase initialized: $predictImageUseCase',
+    ); //  Instance of 'PredictImageUseCase'
 
     return MaterialApp(
       title: 'YOLOv8 Fruit Detection',
