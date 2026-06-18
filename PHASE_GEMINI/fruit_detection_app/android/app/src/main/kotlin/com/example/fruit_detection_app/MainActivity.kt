@@ -18,7 +18,7 @@ class MainActivity: FlutterActivity() {
     private var ortSession: OrtSession? = null
 
     // Sesuai dengan urutan data.yaml di Colab kamu (Contoh isi 5 kelas dummy)
-    private val labels = listOf( "Orange", "Apple", "Ripe", "Unripe", "Underripe", "Overripe", "Empty Bunch", "Damaged", "Abnormal", "Dirty/Long Stalk")
+    private val labels = listOf( "Ripe", "Unripe", "Underripe", "Overripe", "Empty Bunch", "Damaged", "Abnormal", "Dirty/Long Stalk")
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)

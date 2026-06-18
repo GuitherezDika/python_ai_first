@@ -173,4 +173,77 @@ download dan letakkan pada
         uses-material-design: true
         assets:
             - assets/models/dummy_fruits_opset19.onnx
+
+DONE
 =====
+
+coba public oil palm fruits model datraset
+https://universe.roboflow.com/data-fyp-1/oil-palm-fruit-zohnc/dataset/2/download
+Oil Palm Fruit Dataset
+klik = Train a model with this dataset
+    Fork Dataset - KLIK INI => untuk kopi ke workspace
+        PalmBunchesSortation
+        Done
+    Buka Project Workspace pribadi
+        https://app.roboflow.com/palmbunchessortation/projects
+        Klik Project yang tadi
+        masuk ke detail page
+        Tab Kiri:
+            Dataset (4274 images)
+            Versions --- KLIK INI
+                version name = oil_palm_v1
+                Preprocessing -> continue
+                Augmentation -> Continue
+                Create - 
+                tunggu proses sampai selesai (beberapa menit)
+
+                Abaikan anjuran Train Data Model
+                Cukup klik:
+                    Download Dataset
+                
+                Klik: Show Downloaded Code
+                Selesai:
+                    !pip install roboflow
+
+                    from roboflow import Roboflow
+                    rf = Roboflow(api_key="42OUONhF0n4aZzSTe2fB")
+                    project = rf.workspace("palmbunchessortation").project("oil-palm-fruit-zohnc-w8eea")
+                    version = project.version(1)
+                    # dataset = version.download("folder")
+                    dataset = version.download("yolov8")         
+
+                Roboflow Colab
+                https://colab.research.google.com/drive/1tSfeD6YHvnryv157oTy-yWXS0CbK69Kf#scrollTo=l5dcRQCtwh8E
+                klik code;
+                    !pip install ultralytics roboflow
+                KLIK code:
+                    from roboflow import Roboflow
+
+                    rf = Roboflow(api_key="42OUONhF0n4aZzSTe2fB")
+                    project = rf.workspace("palmbunchessortation").project("oil-palm-fruit-zohnc-w8eea")
+                    version = project.version(1)
+
+                    # Mengunduh dengan format terstruktur khusus YOLOv8
+                    dataset = version.download("yolov8")
+
+                    ATAU
+                    from roboflow import Roboflow
+
+                    rf = Roboflow(api_key="42OUONhF0n4aZzSTe2fB")
+                    project = rf.workspace("palmbunchessortation").project("oil-palm-fruit-zohnc-w8eea")
+                    version = project.version(1)
+
+                    dataset = version.download("folder")
+
+
+                    ================================
+
+                    1. Jika Menggunakan "folder"Format "folder" adalah format paling dasar (mentah) di Roboflow. Format ini biasanya digunakan jika Anda ingin menyusun dataset secara manual atau ingin menggunakan visualisasi gambar yang menyatu dengan labelnya.Struktur: Biasanya memisahkan data ke dalam folder train, valid, dan test.Format Label: Format file labelnya sering kali berupa file XML (Pascal VOC), JSON, atau bahkan gambar yang sudah di-overlay (ditimpa) kotak pembatasnya, tergantung pada bagaimana dataset tersebut pertama kali diunggah.Tujuan: Cocok jika Anda ingin memproses ulang (preprocessing) gambar secara manual menggunakan script Python sendiri (misalnya dengan OpenCV) sebelum dimasukkan ke model visual.2. Jika Menggunakan "yolov8"Jika baris kode tersebut diubah menjadi version.download("yolov8"), Roboflow akan otomatis mengekspor dataset ke dalam struktur dan format yang siap pakai khusus untuk melatih model YOLOv8.Struktur: Mengikuti standar ketat arsitektur YOLO, yaitu memisahkan gambar (images) dan label (labels).Plaintextdataset/
+                    ├── train/
+                    │   ├── images/  (berisi file .jpg / .png)
+                    │   └── labels/  (berisi file .txt)
+                    ├── valid/
+                    │   ├── images/
+                    │   └── labels/
+                    └── data.yaml    (file konfigurasi penting untuk YOLOv8)
+                    Format Label: File anotasi otomatis diubah menjadi file teks (.txt). Setiap baris di dalam file teks tersebut berisi koordinat objek yang sudah dinormalisasi antara 0 sampai 1 dengan format:$$\text{class\_id} \quad x_{\text{center}} \quad y_{\text{center}} \quad \text{width} \quad \text{height}$$File Tambahan: Anda akan mendapatkan file data.yaml yang berisi informasi lokasi folder dan nama-nama kelas objek (misalnya untuk proyek kelapa sawit Anda: kelas buah matang, mentah, dll.).
